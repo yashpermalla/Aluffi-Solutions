@@ -1,0 +1,308 @@
+\section{Categories}
+\emph{By: snowflake}
+
+\exercise 
+
+For any two morphisms $f,g$ that can be composed, we will write $f \circ g$ if they are being composed according to the composition rule in $\textsf{C}$, and $fg$ if they are being composed according to the rule in $\textsf{C}^{op}$. \\
+
+Now consider $A,B,C \in \text{Obj}(\textsf{C}^{op})$, and $f \in \text{Hom}_{\textsf{C}^{op}}(A,B)$, $g \in \text{Hom}_{\textsf{C}^{op}}(B,C)$. We define the composition $gf := f \circ g$. Note that $\text{Hom}_{\textsf{C}^{op}}(A,B) = \text{Hom}_{\textsf{C}}(B,A)$ and $\text{Hom}_{\textsf{C}^{op}}(B,C) = \text{Hom}_{\textsf{C}}(C,B)$, so $f \circ g$ is defined and $ \in \text{Hom}_{\textsf{C}}(C,A) = \text{Hom}_{\textsf{C}^{op}}(A,C)$. This is the set that $gf$ must belong to, so composition is well-defined. \\
+
+Now consider $A,B,C,D \in \text{Obj}(\textsf{C}^{op})$, and $f \in \text{Hom}_{\textsf{C}^{op}}(A,B)$, $g \in \text{Hom}_{\textsf{C}^{op}}(B,C)$, $h \in \text{Hom}_{\textsf{C}^{op}}(C,D)$. Then $(hg)f = f \circ (hg)= f \circ (g \circ h) = (f \circ g) \circ h = h(f \circ g)=h(gf)$, proving associativity. \\ 
+
+Next, for every object $A$ of $\textsf{C}^{op}$, we can let $1_A \in \text{Hom}_{\textsf{C}^{op}}(A,A)$ be $1_A \in \text{Hom}_{\textsf{C}}(A,A)$, since $\text{Hom}_{\textsf{C}^{op}}(A,A) = \text{Hom}_{\textsf{C}}(A,A)$. \\
+
+Finally, for any $A,B \in \text{Obj}(\textsf{C}^{op})$ and $f \in \text{Hom}_{\textsf{C}^{op}}(A,B)$, it follows that $f1_A = 1_A \circ f = f$ and $1_B f = f \circ 1_B = f$, since these are identity morphisms in $\textsf{C}$, so they satisfy the identity laws. \\
+
+We have thus shown that $\textsf{C}^{op}$ is a category.
+
+\exercise Let $|A| = n$. Then $\text{End}_{\textsf{Set}}(A)$ consists of functions $A \to A$. Each element of $A$ can map to $n$ different choices, and there are $n$ elements to make this choice for, so $|\text{End}_{\textsf{Set}}(A)| = n^n$.
+
+\exercise For any $a,b \in S$ and morphism $f \in \text{Hom}(a,b)$ (meaning $f = (a,b)$), we see that there is a morphism $(a,a) \in \text{Hom}(a,a)$ and $(b,b)$ in $\text{Hom}(b,b)$ that we denote by $1_a$ and $1_b$ respectively. Using the definition of composition outlined in Example 3.3, we see that $(a,b)(a,a) = (a,b)$, and $(b,b)(a,b) = (a,b)$, proving that these are identity morphisms.
+
+\exercise No. $1 \not < 1$, so there would be no morphism in $\text{Hom}(1,1)$, but we need there to be an identity morphism, so we cannot define a category on $\mathbb{N}$ using the $<$ relation.
+
+\exercise For a fixed set $S$ and power set $P(S)$, the subset relation $\subseteq$ is a reflexive and transitive relation on $P(S)$. We can then construct a category with $P(S)$ as the objects and ordered pairs in the relation as the morphisms, as described in Example 3.3, giving us the category in Example 3.4.
+
+\exercise This can be thought of as the category of linear maps between finite-dimensional vector spaces over $\mathbb{R}$, where the vector spaces are unique up to isomorphism. Each object represents a vector space of distinct dimension, and morphisms between objects consist of all possible linear maps between those vector spaces.
+
+\exercise Let $\textsf{C}$ be a category, with objects in $\textsf{Obj}$ and morphisms accordingly. We construct a new category as follows: fix an object $A$, and denote our new category as $\textsf{C}^A$. Objects in $\textsf{C}^A$ are morphisms from $A$ to any object $Z$ in $\textsf{Obj}$, and are of the following form:
+
+\[\begin{tikzcd}
+	A \\
+	\\
+	Z
+	\arrow["f", from=1-1, to=3-1]
+\end{tikzcd}\]
+where $f \in \text{Hom}_{\textsf{C}}(A,Z)$. Now, for objects $Z_1$ and $Z_2$ in $\textsf{C}$, and morphisms $f_1 \in \text{Hom}_{\textsf{C}}(A,Z_1)$ and $f_2 \in \text{Hom}_{\textsf{C}}(A,Z_2)$, we define $\text{Hom}_{\textsf{C}^A}(f_1,f_2)$ as the set of diagrams of the form 
+
+\[\begin{tikzcd}
+	& A & \\
+	\\
+	Z_1 && Z_2
+	\arrow["f_1"', from=1-2, to=3-1]
+	\arrow["f_2", from=1-2, to=3-3]
+	\arrow["\sigma"', from=3-1, to=3-3]
+\end{tikzcd}\]
+
+such that $\sigma f_1=f_2$. We then define composition as follows: consider the following two diagrams
+
+\[\begin{tikzcd}
+	& A & \\
+	\\
+	Z_1 && Z_2
+	\arrow["f_1"', from=1-2, to=3-1]
+	\arrow["f_2", from=1-2, to=3-3]
+	\arrow["\sigma_1"', from=3-1, to=3-3]
+\end{tikzcd}\]
+
+\[\begin{tikzcd}
+	& A & \\
+	\\
+	Z_2 && Z_3
+	\arrow["f_2"', from=1-2, to=3-1]
+	\arrow["f_3", from=1-2, to=3-3]
+	\arrow["\sigma_2"', from=3-1, to=3-3]
+\end{tikzcd}\]
+
+belonging to $\text{Hom}_{\textsf{C}^A}(f_1,f_2)$ and $\text{Hom}_{\textsf{C}^A}(f_2,f_3)$ respectively. The composition is the following diagram:
+
+\[\begin{tikzcd}
+	& A & \\
+	\\
+	Z_1 && Z_3
+	\arrow["f_1"', from=1-2, to=3-1]
+	\arrow["f_3", from=1-2, to=3-3]
+	\arrow["\sigma_2 \sigma_1"', from=3-1, to=3-3]
+\end{tikzcd}\]
+
+Note that this diagram commutes, since $(\sigma_2 \sigma_1) f_1 = \sigma_2 (\sigma_1 f_1) = \sigma_2 f_2 = f_3$, so this diagram is a valid morphism in $\text{Hom}_{\textsf{C}^A}(f_1,f_3)$.
+
+\exercise We can construct a category of infinite sets $\textsf{SetInf}$ as follows: Let the objects be sets in $\text{Obj}(\textsf{Set})$ with infinite cardinality, and for any two infinite sets $A,B$, define $\text{Hom}_{\textsf{SetInf}}(A,B)$ as the set of functions $A \to B$. In other words,  $\text{Hom}_{\textsf{SetInf}}(A,B) = \text{Hom}_{\textsf{Set}}(A,B)$.
+
+Since an identity function from an infinite set to itself is a function between infinite sets, we inherit identity functions from $\textsf{Set}$. We also inherit composition, giving us associativity and identity laws, making $\textsf{SetInf}$ a category. Finally, since $\text{Hom}_{\textsf{SetInf}}(A,B) = \text{Hom}_{\textsf{Set}}(A,B)$ for all $A,B$ in $\textsf{SetInf}$, it follows that $\textsf{SetInf}$ is a full subcategory of $\textsf{Set}$.
+
+\exercise We define objects in $\textsf{MSet}$ as ordered pairs consisting of a set and an equivalence relation on that set, $(S, \sim)$. We then define morphisms between ordered pairs $(S_1, \sim_1), (S_2, \sim_2)$ as set functions $f: S_1 \to S_2$ such that $x \sim_1 y$ implies $f(x) \sim_2 f(y)$. \\
+
+We then define composition between morphisms $f \in \text{Hom}((S_1, \sim_1), (S_2, \sim_2))$ and $g \in \\ \text{Hom}((S_2, \sim_2), (S_3, \sim_3))$ as $gf$ according to composition in $\textsf{Set}$. We can see that if $x \sim_1 y$, then $f(x) \sim_2 f(y)$, since $f$ is a morphism. From $g$ being a morphism, it follows that $g(f(x)) \sim_3 g(f(y))$. Thus, $gf$ is a set function such that $x \sim_1 y$ implies $gf(x) \sim_3 gf(y)$, so $gf$ is an element of $\text{Hom}((S_1, \sim_1), (S_3, \sim_3))$, making composition well-defined. \\
+
+We can inherit the identity morphisms from $\textsf{Set}$, since identity set functions preserve equivalence relations. The morphisms are all set functions composed according to $\textsf{Set}$, so the identity and associativity laws are preserved. Thus, we have a category. \\
+
+We can also verify that $\textsf{Set}$ is a full subcategory. Such objects use the identity equivalence relation for every set, and every set function between such sets vacuously preserves the relations, so all possible set functions are inherited and compose in the same way. \\
+
+The objects that determine ordinary multisets are precisely the ones with finitely-sized equivalence classes. We can rewrite these objects by picking a representative of each equivalence class, taking our set to consist of the representatives, and defining the multiplicity function to map each representative to the size of its equivalence class. \\
+
+If we look at a morphism between ordinary multisets $m_1 :S_1 \to \mathbb{N}$ and $m_2 : S_2 \to \mathbb{N}$ using the multiplicity function formulation, we can first convert the multisets into sets, creating $m_1 (s_1)$ distinct copies of $s_1$ for each $s_1 \in S$ and putting these copies into a disjoint equivalence class from the remaining elements, and doing the same for $m_2$. The morphism is then a set function that preserves the equivalence relation. Since the identical elements in an ordinary multiset are meant to be indistinguishable, we can condense this information into picking how many distinct elements in each equivalence class in the codomain are mapped to, and keep track of this number for each element in the codomain set, with the restriction that this number must be bounded above by both the size of the codomain equivalence class and the sum of the sizes of the domain classes that map into the codomain equivalence class. In this sense, a morphism between $m_1$ and $m_2$ is a function $S_1 \to S_2 \times \mathbb{N}$ with restrictions as outlined above.
+
+\exercise Any two-element set is a valid subobject classifier in $\textsf{Set}$, defining a subobject of a given set as a subset of the set. Fix a two-element set $B$, with elements denoted $0,1$, and consider an arbitrary set $A$. Consider the map $M: \text{Hom}_{\textsf{Set}}(A,B) \to P(A)$, defined by $f \mapsto f^{-1}(\{0\})$.\\
+
+If two morphisms $f, g$ are distinct, then there must be some $a \in A$ such that $f(a) \neq g(a)$, and WLOG $f(a) = 0, g(a) = 1$. This means $a \in f^{-1}(\{0\})$ and $a \notin g^{-1}(\{0\})$, so the preimages are not equal, making $M$ an injective mapping. \\
+
+Now consider any $S \in P(A)$, and define $h:f \to g$ as $h(a) = 0$ if $a \in S$, and $h(a) = 1$ otherwise. By construction, $h^{-1}(\{0\}) = S$, so $M$ is surjective on $P(A)$. \\
+
+Thus, $M$ is a bijection, and we have a one-to-one correspondence between the subobjects (subsets) of $A$ and morphisms $A \to B$. $A$ was arbitrary, so this makes $B$ a valid subobject classifier.
+
+\exercise
+
+
+The class of objects in $\textsf{C}^{A,B}$ looks like this:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzAsMiwiQiJdLFsyLDEsIloiXSxbMCwyLCJmIl0sWzEsMiwiZyIsMl1d
+\[\begin{tikzcd}
+	A \\
+	&& Z \\
+	B
+	\arrow["f", from=1-1, to=2-3]
+	\arrow["g"', from=3-1, to=2-3]
+\end{tikzcd}\]
+In other words, it consists of pairs of morphisms between fixed objects $A, B$ of $\textsf{C}$ and a variable object $Z$ of $\textsf{C}$.
+
+If we have two such objects in $\textsf{C}^{A,B}$, they would look like the following:
+
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJBIl0sWzAsMiwiQiJdLFsyLDEsIlpfMSJdLFs0LDAsIkEiXSxbNCwyLCJCIl0sWzYsMSwiWl8yIl0sWzAsMiwiZl8xIl0sWzEsMiwiZ18xIiwyXSxbMyw1LCJmXzIiXSxbNCw1LCJnXzIiLDJdXQ==
+\[\begin{tikzcd}
+	A &&&& A \\
+	&& {Z_1} &&&& {Z_2} \\
+	B &&&& B
+	\arrow["{f_1}", from=1-1, to=2-3]
+	\arrow["{f_2}", from=1-5, to=2-7]
+	\arrow["{g_1}"', from=3-1, to=2-3]
+	\arrow["{g_2}"', from=3-5, to=2-7]
+\end{tikzcd}\]
+
+If we labeled these diagrams as $(f_1, g_1), (f_2, g_2)$ respectively, we can define a morphism $(f_1, g_1) \rightarrow (f_2, g_2)$ as a commutative diagram 
+
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsNCwiQiJdLFsxLDIsIlpfMSJdLFszLDIsIlpfMiJdLFswLDIsImZfMSJdLFsxLDIsImdfMSIsMl0sWzIsMywiXFxzaWdtYSIsMl0sWzAsMywiZl8yIl0sWzEsMywiZ18yIiwyXV0=
+\[\begin{tikzcd}
+	A \\
+	\\
+	& {Z_1} && {Z_2} \\
+	\\
+	B
+	\arrow["{f_1}", from=1-1, to=3-2]
+	\arrow["{f_2}", from=1-1, to=3-4]
+	\arrow["\sigma"', from=3-2, to=3-4]
+	\arrow["{g_1}"', from=5-1, to=3-2]
+	\arrow["{g_2}"', from=5-1, to=3-4]
+\end{tikzcd}\]
+
+such that $\sigma f_1 = f_2$ and $\sigma g_1 = g_2$. \\
+
+The identity morphism would look like 
+
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsNCwiQiJdLFsxLDIsIloiXSxbMywyLCJaIl0sWzAsMiwiZiJdLFsxLDIsImciLDJdLFsyLDMsIjFfWiIsMl0sWzAsMywiZiJdLFsxLDMsImciLDJdXQ==
+\[\begin{tikzcd}
+	A \\
+	\\
+	& Z && Z \\
+	\\
+	B
+	\arrow["f", from=1-1, to=3-2]
+	\arrow["f", from=1-1, to=3-4]
+	\arrow["{1_Z}"', from=3-2, to=3-4]
+	\arrow["g"', from=5-1, to=3-2]
+	\arrow["g"', from=5-1, to=3-4]
+\end{tikzcd}\]
+
+If we had two morphisms, $(f_1, g_1) \rightarrow (f_2, g_2)$ and $(f_2, g_2) \rightarrow (f_3, g_3)$ as the following:
+
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJBIl0sWzAsNCwiQiJdLFsxLDIsIlpfMSJdLFszLDIsIlpfMiJdLFs0LDAsIkEiXSxbNCw0LCJCIl0sWzUsMiwiWl8yIl0sWzcsMiwiWl8zIl0sWzAsMiwiZl8xIl0sWzEsMiwiZ18xIiwyXSxbMiwzLCJcXHNpZ21hXzEiLDJdLFswLDMsImZfMiJdLFsxLDMsImdfMiIsMl0sWzQsNiwiZl8yIiwyXSxbNCw3LCJmXzMiXSxbNSw2LCJnXzIiXSxbNSw3LCJnXzMiLDJdLFs2LDcsIlxcc2lnbWFfMiIsMl1d
+\[\begin{tikzcd}
+	A &&&& A \\
+	\\
+	& {Z_1} && {Z_2} && {Z_2} && {Z_3} \\
+	\\
+	B &&&& B
+	\arrow["{f_1}", from=1-1, to=3-2]
+	\arrow["{f_2}", from=1-1, to=3-4]
+	\arrow["{f_2}"', from=1-5, to=3-6]
+	\arrow["{f_3}", from=1-5, to=3-8]
+	\arrow["{\sigma_1}"', from=3-2, to=3-4]
+	\arrow["{\sigma_2}"', from=3-6, to=3-8]
+	\arrow["{g_1}"', from=5-1, to=3-2]
+	\arrow["{g_2}"', from=5-1, to=3-4]
+	\arrow["{g_2}", from=5-5, to=3-6]
+	\arrow["{g_3}"', from=5-5, to=3-8]
+\end{tikzcd}\]
+
+
+then the composition $((f_2, g_2) \rightarrow (f_3, g_3)) \circ ((f_1, g_1) \rightarrow (f_2, g_2))$ would look like
+
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsNCwiQiJdLFsxLDIsIlpfMSJdLFszLDIsIlpfMyJdLFswLDIsImZfMSJdLFsxLDIsImdfMSIsMl0sWzIsMywiXFxzaWdtYV8yIFxcY2lyY1xcc2lnbWFfMSIsMl0sWzAsMywiZl8zIl0sWzEsMywiZ18zIiwyXV0=
+\[\begin{tikzcd}
+	A \\
+	\\
+	& {Z_1} && {Z_3} \\
+	\\
+	B
+	\arrow["{f_1}", from=1-1, to=3-2]
+	\arrow["{f_3}", from=1-1, to=3-4]
+	\arrow["{\sigma_2 \circ\sigma_1}"', from=3-2, to=3-4]
+	\arrow["{g_1}"', from=5-1, to=3-2]
+	\arrow["{g_3}"', from=5-1, to=3-4]
+\end{tikzcd}\]
+
+It can be verified that the axioms of categories hold based on these definitions (associativity, identity rules) and the properties of $\textsf{C}$. \\
+
+For $\textsf{C}^{\alpha, \beta}$, objects in the category look like this:
+
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJDIl0sWzIsMCwiQSJdLFsyLDIsIkIiXSxbNCwxLCJaIl0sWzAsMSwiXFxhbHBoYSIsMl0sWzAsMiwiXFxiZXRhIl0sWzIsMywiZyJdLFsxLDMsImYiLDJdXQ==
+\[\begin{tikzcd}
+	&& A \\
+	C &&&& Z \\
+	&& B
+	\arrow["f"', from=1-3, to=2-5]
+	\arrow["\alpha"', from=2-1, to=1-3]
+	\arrow["\beta", from=2-1, to=3-3]
+	\arrow["g", from=3-3, to=2-5]
+\end{tikzcd}\]
+
+where $C, A, B$ are fixed objects of $\textsf{C}$, $\alpha$ and $\beta$ are fixed morphisms of $\textsf{C}$, and $Z$ is a variable object of $\textsf{C}$. The object can be described by $(f, g)$, which must satisfy commutative diagram properties ($f \circ \alpha = g \circ \beta)$. 
+
+If we had two such objects, they would look like
+
+% https://q.uiver.app/#q=WzAsOCxbMCwxLCJDIl0sWzIsMCwiQSJdLFsyLDIsIkIiXSxbNCwxLCJaXzEiXSxbNSwxLCJDIl0sWzcsMCwiQSJdLFs5LDEsIlpfMiJdLFs3LDIsIkIiXSxbMCwxLCJcXGFscGhhIl0sWzAsMiwiXFxiZXRhIiwyXSxbMiwzLCJnXzEiLDJdLFsxLDMsImZfMSJdLFs0LDUsIlxcYWxwaGEiXSxbNCw3LCJcXGJldGEiLDJdLFs3LDYsImdfMiIsMl0sWzUsNiwiZl8yIl1d
+\[\begin{tikzcd}
+	&& A &&&&& A \\
+	C &&&& {Z_1} & C &&&& {Z_2} \\
+	&& B &&&&& B
+	\arrow["{f_1}", from=1-3, to=2-5]
+	\arrow["{f_2}", from=1-8, to=2-10]
+	\arrow["\alpha", from=2-1, to=1-3]
+	\arrow["\beta"', from=2-1, to=3-3]
+	\arrow["\alpha", from=2-6, to=1-8]
+	\arrow["\beta"', from=2-6, to=3-8]
+	\arrow["{g_1}"', from=3-3, to=2-5]
+	\arrow["{g_2}"', from=3-8, to=2-10]
+\end{tikzcd}\]
+
+and a morphism $(f_1, g_1) \rightarrow (f_2, g_2)$ would be
+
+% https://q.uiver.app/#q=WzAsNSxbMCwxLCJDIl0sWzIsMCwiQSJdLFsyLDIsIkIiXSxbMiwxLCJaXzEiXSxbMywxLCJaXzIiXSxbMCwxLCJcXGFscGhhIl0sWzAsMiwiXFxiZXRhIiwyXSxbMSwzLCJmXzEiLDJdLFsyLDMsImdfMSJdLFsxLDQsImZfMiJdLFsyLDQsImdfMiIsMl0sWzMsNCwiXFxzaWdtYSIsMV1d
+\[\begin{tikzcd}
+	&& A \\
+	C && {Z_1} & {Z_2} \\
+	&& B
+	\arrow["{f_1}"', from=1-3, to=2-3]
+	\arrow["{f_2}", from=1-3, to=2-4]
+	\arrow["\alpha", from=2-1, to=1-3]
+	\arrow["\beta"', from=2-1, to=3-3]
+	\arrow["\sigma"{description}, from=2-3, to=2-4]
+	\arrow["{g_1}", from=3-3, to=2-3]
+	\arrow["{g_2}"', from=3-3, to=2-4]
+\end{tikzcd}\]
+
+where we need $\sigma f_1 = f_2$ and $\sigma g_1 = g_2$.
+
+The identity morphism would look like 
+
+% https://q.uiver.app/#q=WzAsNSxbMCwxLCJDIl0sWzIsMCwiQSJdLFsyLDIsIkIiXSxbMiwxLCJaIl0sWzQsMSwiWiJdLFswLDEsIlxcYWxwaGEiXSxbMCwyLCJcXGJldGEiLDJdLFsxLDMsImYiLDJdLFsyLDMsImciXSxbMSw0LCJmIl0sWzIsNCwiZyIsMl0sWzMsNCwiMV9aIiwxXV0=
+\[\begin{tikzcd}
+	&& A \\
+	C && Z && Z \\
+	&& B
+	\arrow["f"', from=1-3, to=2-3]
+	\arrow["f", from=1-3, to=2-5]
+	\arrow["\alpha", from=2-1, to=1-3]
+	\arrow["\beta"', from=2-1, to=3-3]
+	\arrow["{1_Z}"{description}, from=2-3, to=2-5]
+	\arrow["g", from=3-3, to=2-3]
+	\arrow["g"', from=3-3, to=2-5]
+\end{tikzcd}\]
+
+If we composed the following morphisms:
+
+% https://q.uiver.app/#q=WzAsMTAsWzAsMSwiQyJdLFsyLDAsIkEiXSxbMiwyLCJCIl0sWzIsMSwiWl8xIl0sWzMsMSwiWl8yIl0sWzQsMSwiQyJdLFs2LDAsIkEiXSxbNiwyLCJCIl0sWzYsMSwiWl8yIl0sWzcsMSwiWl8zIl0sWzAsMSwiXFxhbHBoYSJdLFswLDIsIlxcYmV0YSIsMl0sWzEsMywiZl8xIiwyXSxbMiwzLCJnXzEiXSxbMSw0LCJmXzIiXSxbMiw0LCJnXzIiLDJdLFszLDQsIlxcc2lnbWFfMSIsMV0sWzUsNl0sWzUsN10sWzcsOCwiZ18yIl0sWzYsOCwiZl8yIiwyXSxbOCw5LCJcXHNpZ21hXzIiLDFdLFs2LDksImZfMyJdLFs3LDksImdfMyIsMl1d
+\[\begin{tikzcd}
+	&& A &&&& A \\
+	C && {Z_1} & {Z_2} & C && {Z_2} & {Z_3} \\
+	&& B &&&& B
+	\arrow["{f_1}"', from=1-3, to=2-3]
+	\arrow["{f_2}", from=1-3, to=2-4]
+	\arrow["{f_2}"', from=1-7, to=2-7]
+	\arrow["{f_3}", from=1-7, to=2-8]
+	\arrow["\alpha", from=2-1, to=1-3]
+	\arrow["\beta"', from=2-1, to=3-3]
+	\arrow["{\sigma_1}"{description}, from=2-3, to=2-4]
+	\arrow[from=2-5, to=1-7]
+	\arrow[from=2-5, to=3-7]
+	\arrow["{\sigma_2}"{description}, from=2-7, to=2-8]
+	\arrow["{g_1}", from=3-3, to=2-3]
+	\arrow["{g_2}"', from=3-3, to=2-4]
+	\arrow["{g_2}", from=3-7, to=2-7]
+	\arrow["{g_3}"', from=3-7, to=2-8]
+\end{tikzcd}\]
+
+The resulting morphism would be
+
+% https://q.uiver.app/#q=WzAsNSxbMCwxLCJDIl0sWzIsMCwiQSJdLFsyLDIsIkIiXSxbMiwxLCJaXzEiXSxbNCwxLCJaXzMiXSxbMCwxLCJcXGFscGhhIl0sWzAsMiwiXFxiZXRhIiwyXSxbMSwzLCJmXzEiLDJdLFsyLDMsImdfMSJdLFsxLDQsImZfMyJdLFsyLDQsImdfMyIsMl0sWzMsNCwiXFxzaWdtYV8yIFxcc2lnbWFfMSIsMV1d
+\[\begin{tikzcd}
+	&& A \\
+	C && {Z_1} && {Z_3} \\
+	&& B
+	\arrow["{f_1}"', from=1-3, to=2-3]
+	\arrow["{f_3}", from=1-3, to=2-5]
+	\arrow["\alpha", from=2-1, to=1-3]
+	\arrow["\beta"', from=2-1, to=3-3]
+	\arrow["{\sigma_2 \sigma_1}"{description}, from=2-3, to=2-5]
+	\arrow["{g_1}", from=3-3, to=2-3]
+	\arrow["{g_3}"', from=3-3, to=2-5]
+\end{tikzcd}\]
